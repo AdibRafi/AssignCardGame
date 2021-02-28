@@ -2,8 +2,12 @@ package Function;
 
 public class Player {
     int playerScore = 0;
+    String playerName;
 
     public Player(){}
+    public Player(String name){
+        this.playerName = name;
+    }
 
     public void restartScore(){
         playerScore = 0;

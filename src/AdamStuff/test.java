@@ -2,9 +2,12 @@ package AdamStuff;
 
 import java.util.Random;
 import java.util.Scanner;
+import Function.Player;
 
 public class test {
     public static void main(String[] args) {
+
+        Player P1 = new Player("");
 
         Scanner input = new Scanner(System.in);
         Players[] players = new Players[3];
