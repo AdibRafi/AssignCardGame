@@ -28,7 +28,7 @@ public class DeckOfCards {
 
         // print shuffled deck
         for (int i = 0; i < n; i++) {
-            System.out.println(deck[i]);
+            System.out.print(deck[i]+" ");
         }
     }
 
