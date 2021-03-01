@@ -7,7 +7,7 @@ public class CardGame {
     Cards fullPack;
     ArrayList<Player> players;
     Score scoreCard;
-    Cards[] cardsOnTable = [];
+    Cards[] cardsOnTable;
     int roundNo;
     int turnOfPlayer;
 
