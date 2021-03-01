@@ -23,6 +23,20 @@ public class test {
             System.out.println("Enter Player Name: ");
             players[i] = new Players(input.nextLine());
         }
+        //todo adam what u can do is
+        // - pergi ambik 1 array and put all cards dlm tu soo
+        //   should be 1 array got 52 element
+        // - then use for loop n letak element dari tadi
+        //   p1,p2,p3 kat dlm tu.
+        //   contoh
+        //   allCards[] = {c1,c2,c3,c4,etc}
+        //   for loop{
+        //    p1 = allcards[i]
+        //    p2 = allcards[i+1]
+        //    p3 = allcards[i+2]
+        //    }
+        // lebih kurang gitu la
+        // -adib
 
         Players[] playersWithCards = Dealer.dealCards(players, shuffledCards);
 
