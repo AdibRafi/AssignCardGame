@@ -2,6 +2,9 @@ import Function.Card;
 import Function.Player;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class Start {
     public static void main(String[] args) {
@@ -27,41 +30,56 @@ public class Start {
         Player p1 = new Player("adib");
         Player p2 = new Player("adam");
         Player p3 = new Player("darwisy");
+
+        int x;
+        int y;
+        int z;
+        int max;
+
+        String displayX;
+        String displayY;
+        String displayZ;
+
+
         //display Available cards 3 Player
+        for (int i = 0; i < 3; i++) {
+
+            //display cards in hand
+             x = Card.getValueFromCard(fiveElement1);
+             y = Card.getValueFromCard(fiveElement2);
+             z = Card.getValueFromCard(fiveElement3);
+             max = Math.max(x,Math.max(y,z));
+             displayX = String.format("%-8s : %s | Point = %s",p1.getPlayerName(),
+                    Arrays.toString(fiveElement1),x);
+             displayY = String.format("%-8s : %s | Point = %s",p2.getPlayerName(),
+                    Arrays.toString(fiveElement2),y);
+             displayZ = String.format("%-8s : %s | Point = %s",p3.getPlayerName(),
+                    Arrays.toString(fiveElement3),z);
+
+            if (max == x) {
+                displayX += " | Win";
+                p1.addValue(x);
+            }
+            if (max == y){
+                displayY += " | Win";
+                p2.addValue(y);
+            }
+            if (max == z) {
+                displayZ += " | Win";
+                p3.addValue(z);
+            }
+
+            System.out.println(displayX);
+            System.out.println(displayY);
+            System.out.println(displayZ);
+
+            System.out.println("p1 value = "+p1.getPlayerScore());
+            System.out.println("p2 value = "+p2.getPlayerScore());
+            System.out.println("p3 value = "+p3.getPlayerScore());
 
 
-        //display cards in hand
-        int x = Card.getValueFromCard(fiveElement1);
-        int y = Card.getValueFromCard(fiveElement2);
-        int z = Card.getValueFromCard(fiveElement3);
-        int max = Math.max(x,Math.max(y,z));
-        String displayX = String.format("%-8s : %s | Point = %s",p1.getPlayerName(),
-                Arrays.toString(fiveElement1),x);
-        String displayY = String.format("%-8s : %s | Point = %s",p2.getPlayerName(),
-                Arrays.toString(fiveElement2),y);
-        String displayZ = String.format("%-8s : %s | Point = %s",p3.getPlayerName(),
-                Arrays.toString(fiveElement3),z);
-
-        if (max == x) {
-            displayX += " | Win";
-            p1.addValue(x);
         }
-        if (max == y){
-            displayY += " | Win";
-            p2.addValue(y);
-        }
-        if (max == z) {
-            displayZ += " | Win";
-            p3.addValue(z);
-        }
 
-        System.out.println(displayX);
-        System.out.println(displayY);
-        System.out.println(displayZ);
-
-        System.out.println("p1 value = "+p1.getPlayerScore());
-        System.out.println("p2 value = "+p2.getPlayerScore());
-        System.out.println("p3 value = "+p3.getPlayerScore());
 
         // START 2 PLAYER (GUNA SET)
         //contoh menang
@@ -70,7 +88,11 @@ public class Start {
         Player p5 = new Player(menang[2]);
         p4.addValue(Integer.parseInt(menang[1]));
         p5.addValue(Integer.parseInt(menang[3]));
+
         //display available cards
+        Set<String> dispAvailableCard = new LinkedHashSet<>();
+        p4.distributeCardsSet(cards1);
+
 
         //display cards at hand
         x = Card.getValueFromCard(fiveElement1);
