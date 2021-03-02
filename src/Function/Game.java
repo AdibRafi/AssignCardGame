@@ -31,6 +31,16 @@ public class Game{
         this.playerCardsSet = Card.shuffleSet(playerCardsSet);
     }
 
+    // Return 5 elements
+    public String[] return5(){
+        String[] newHand = new String[5];
+        for (int i = 0; i < 5; i++) {
+            newHand[i] = this.playerCardsQueue.remove();
+        }
+        Card.sorted5Elements(newHand);
+        return newHand;
+    }
+
 
     // TESTING DISPLAY ONLY
     public String displayQueue() {
@@ -42,5 +52,9 @@ public class Game{
         return "Game{" +
                 "playerCardsSet=" + playerCardsSet +
                 '}';
+    }
+
+    public Queue<String> getPlayerCardsQueue() {
+        return playerCardsQueue;
     }
 }
