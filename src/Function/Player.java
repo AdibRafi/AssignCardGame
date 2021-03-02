@@ -1,7 +1,5 @@
 package Function;
 
-import java.util.Set;
-
 public class Player extends Game{
     int playerScore = 0;
     String playerName;
@@ -11,11 +9,6 @@ public class Player extends Game{
     public Player(String name){
         this.playerName = name;
     }
-    public Player(String name, Set<String> cards){
-        super(cards);
-        this.playerName = name;
-    }
-
 
     public void restartScore(){
         playerScore = 0;
@@ -24,10 +17,11 @@ public class Player extends Game{
         playerScore += value;
     }
 
-    @Override
-    public String toString() {
-        return "Player{" +
-                "playerCards=" + playerCards +
-                '}';
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public int getPlayerScore() {
+        return playerScore;
     }
 }
