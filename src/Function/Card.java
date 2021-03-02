@@ -84,4 +84,19 @@ public class Card {
         }
         return result;
     }
+
+    public static String[] sorted5Elements(String[] array){
+        Arrays.sort(array, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.compareTo(o2);
+            }
+        });
+
+        String[] result = new String[5];
+        for(int i = 0; i < 5; i++){
+            result[i] = array[i];
+        }
+        return result;
+    }
 }
