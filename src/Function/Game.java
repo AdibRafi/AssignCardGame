@@ -15,14 +15,13 @@ public class Game{
         playerCardsSet.addAll(Arrays.asList(cards));
     }
     //remove cards from ori
-    public void removeCardsQueue(Queue<String> remove){
-        int loop = remove.size();
-        for (int i = 0; i < loop; i++) {
+    public void removeCardsQueue(){
+        for (int i = 0; i < 5; i++) {
             playerCardsQueue.remove();
         }
     }
-    public void removeCardsSet(Set<String> remove){
-        playerCardsSet.removeAll(remove);
+    public void removeCardsSet(String[] remove){
+        playerCardsSet.removeAll(Arrays.asList(remove));
     }
     // Shuffling a cards from player
     public void shuffleQueue(){
