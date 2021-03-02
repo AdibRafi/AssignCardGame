@@ -1,17 +1,31 @@
 package Function;
 
-import java.util.ArrayList;
-import java.util.Set;
+import java.beans.PropertyEditorSupport;
+import java.util.*;
 
 public class Card {
-    public static void shuffleCards(String[] cards){
-        for (int i = 0; i < cards.length; i++) {
-            int r = i + (int) (Math.random() * (cards.length-i));
-            String temp = cards[r];
-            cards[r] = cards[i];
-            cards[i] = temp;
+    public static Queue<String> shuffleQueue(Queue<String> cards){
+        // change queue to arrayList
+        int loop = cards.size();
+        List<String> arrays = new ArrayList<>();
+        for (int i = 0; i < loop; i++) {
+            arrays.add(cards.remove());
         }
+        Collections.shuffle(arrays);
+        return new LinkedList<>(arrays);
     }
+    public static Set<String> shuffleSet(Set<String> cards){
+        //change set to ArrayList
+        int loop = cards.size();
+        ArrayList<String> arrays = new ArrayList<>();
+        for (int i = 0; i < loop; i++) {
+            arrays.add(cards.iterator().next());
+            cards.remove(arrays.get(i));
+        }
+        Collections.shuffle(arrays);
+        return new LinkedHashSet<>(arrays);
+    }
+
     public static int getValueFromCard(String[] fiveElementArray){
         ArrayList<String> result = new ArrayList<>();
         int c=0,d=0,h=0,s=0;
