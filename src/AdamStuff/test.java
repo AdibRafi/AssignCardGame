@@ -1,5 +1,6 @@
 package AdamStuff;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import Function.Player;
@@ -11,13 +12,13 @@ public class test {
 
         Scanner input = new Scanner(System.in);
         Players[] players = new Players[3];
-        Card[] deck = Dealer.getDeckOfCards();
+        //Card[] deck = Dealer.getDeckOfCards();
 
-        System.out.println("Un-shuffled Cards.");
-        Dealer.showCards(deck);
-        Card[] shuffledCards = Dealer.shuffleCards(deck);
-        System.out.println("Shuffled Cards.");
-        Dealer.showCards(shuffledCards);
+//        System.out.println("Un-shuffled Cards.");
+//        Dealer.showCards(deck);
+//        Card[] shuffledCards = Dealer.shuffleCards(deck);
+//        System.out.println("Shuffled Cards.");
+//        Dealer.showCards(shuffledCards);
 
         for(int i = 0; i < players.length; i++) {
             System.out.println("Enter Player Name: ");
@@ -38,14 +39,13 @@ public class test {
         // lebih kurang gitu la
         // -adib
 
-        Players[] playersWithCards = Dealer.dealCards(players, shuffledCards);
+        //Players[] playersWithCards = Dealer.dealCards(players, shuffledCards);
 
-        for(Players player : playersWithCards) {
-            System.out.println(player.getName() + " : ");
-            player.showPlayerCards();
+        //for(Players player : playersWithCards) {
+        //    System.out.println(player.getName() + " : ");
+        //    player.showPlayerCards();
         }
     }
-}
 
 class Card {
     String suit;
@@ -80,36 +80,33 @@ class Players {
 }
 
 class Dealer {
-    private static final int SIZE = 52;
-    private static Card[] deckOfCards = new Card[SIZE];
-
-    static Card[] getDeckOfCards() {
-
-        int count = 0;
+    public static String[] getDeckOfCards() {
+        ArrayList<String> deckOfCards = new ArrayList<>();
 
         String[] suits = {"d", "c", "h", "s"};
-        String[] ranks = {"K", "Q", "J", "10", "9", "8", "7", "6", "5", "4", "3", "2", "A"};
+        String[] ranks = {"K", "Q", "J", "X", "9", "8", "7", "6", "5", "4", "3", "2", "A"};
 
-        for (String s : suits) {
-            for (String r : ranks) {
-
-                Card card = new Card(s, r);
-                deckOfCards[count] = card;
-                count++;
+        for (String suit : suits) {
+            for (String rank : ranks) {
+                deckOfCards.add(suit + rank);
             }
         }
-        return deckOfCards;
+        String[] result = new String[deckOfCards.size()];
+        for (int i = 0; i < deckOfCards.size(); i++) {
+            result[i] = deckOfCards.get(i);
+        }
+        return result;
     }
 
     static Card[] shuffleCards(Card[] deckOfCards) {
         Random rand = new Random();
         int j;
-        for (int i = 0; i < SIZE; i++) {
-            j = rand.nextInt(SIZE);
-            Card temp = deckOfCards[i];
-            deckOfCards[i] = deckOfCards[j];
-            deckOfCards[j] = temp;
-        }
+//        for (int i = 0; i < SIZE; i++) {
+//            j = rand.nextInt(SIZE);
+//            Card temp = deckOfCards[i];
+//            deckOfCards[i] = deckOfCards[j];
+//            deckOfCards[j] = temp;
+//        }
         return deckOfCards;
     }
 
@@ -117,7 +114,7 @@ class Dealer {
         System.out.println("---------------------------------------------");
         int count = 0;
         for (Card card : deckOfCards) {
-            System.out.printf("%s%s\t", card.suit, card.rank); //use print f with \t (tab character)
+            System.out.printf("%s%s\t", card.suit, card.rank);
             count++;
             if (count % 4 == 0)
                 System.out.println();

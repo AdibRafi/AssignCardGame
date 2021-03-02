@@ -67,4 +67,21 @@ public class Card {
         }
     }
 
+    public static String[] getDeckOfCards() {
+        ArrayList<String> deckOfCards = new ArrayList<>();
+
+        String[] suits = {"d", "c", "h", "s"};
+        String[] ranks = {"K", "Q", "J", "X", "9", "8", "7", "6", "5", "4", "3", "2", "A"};
+
+        for (String suit : suits) {
+            for (String rank : ranks) {
+                deckOfCards.add(suit + rank);
+            }
+        }
+        String[] result = new String[deckOfCards.size()];
+        for (int i = 0; i < deckOfCards.size(); i++) {
+            result[i] = deckOfCards.get(i);
+        }
+        return result;
+    }
 }

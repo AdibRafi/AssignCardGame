@@ -1,10 +1,7 @@
 import Function.Card;
 import Function.Player;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Start {
     public static void main(String[] args) {
@@ -30,6 +27,35 @@ public class Start {
         Player p1 = new Player("adib");
         Player p2 = new Player("adam");
         Player p3 = new Player("darwisy");
+
+        String[] fullcard = Card.getDeckOfCards();
+
+        Queue<String> flc = new LinkedList<>(Arrays.asList(fullcard));
+        String[] cardsToGiveP1 = new String[18];
+        String[] cardsToGiveP2 = new String[17];
+        String[] cardsToGiveP3 = new String[17];
+
+        flc = Card.shuffleQueue(flc);
+
+        for (int i = 0; i < 18; i++) {
+            cardsToGiveP1[i] = flc.remove();
+        }
+
+        for (int i = 0; i < 17; i++) {
+            cardsToGiveP2[i] = flc.remove();
+        }
+
+        for (int i = 0; i < 17; i++) {
+            cardsToGiveP3[i] = flc.remove();
+        }
+
+        p1.distributeCardsQueue(cardsToGiveP1);
+        p2.distributeCardsQueue(cardsToGiveP2);
+        p3.distributeCardsQueue(cardsToGiveP3);
+
+        System.out.println(p1.displayQueue());
+        System.out.println(p2.displayQueue());
+        System.out.println(p3.displayQueue());
 
         int x;
         int y;
