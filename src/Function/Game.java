@@ -32,7 +32,7 @@ public class Game{
     }
 
     // Return 5 elements
-    public String[] return5(){
+    public String[] return5Queue(){
         String[] newHand = new String[5];
         for (int i = 0; i < 5; i++) {
             newHand[i] = this.playerCardsQueue.remove();
@@ -40,6 +40,17 @@ public class Game{
         Card.sorted5Elements(newHand);
         return newHand;
     }
+
+    public String[] return5Set(){
+        String[] newHand = new String[5];
+        for (int i = 0; i < 5; i++) {
+            newHand[i] = this.playerCardsSet.iterator().next();
+            this.playerCardsSet.remove(this.playerCardsSet.iterator().next());
+        }
+        Card.sorted5Elements(newHand);
+        return newHand;
+    }
+
 
 
     // TESTING DISPLAY ONLY
