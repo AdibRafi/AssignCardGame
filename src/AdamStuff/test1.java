@@ -10,6 +10,43 @@ import Function.Card;
 public class test1{
     public static void main(String[] args) {
 
+//        // 2 Player Phase
+//        String[] fullcard = Dealer.getDeckOfCards();
+//
+//        Player P4 = new Player("Adam");
+//        Player P5 = new Player("Adib");
+//
+//        Queue<String> flc = new LinkedList<>(Arrays.asList(fullcard));
+//
+//        flc = Card.shuffleQueue(flc);
+//
+//        String[] cardsToGiveP4 = new String[26];
+//        String[] cardsToGiveP5 = new String[26];
+//
+//        for (int i = 0; i < 26; i++) {
+//            cardsToGiveP4[i] = flc.remove();
+//        }
+//
+//        for (int i = 0; i < 26; i++) {
+//            cardsToGiveP5[i] = flc.remove();
+//        }
+//
+//        P4.distributeCardsSet(cardsToGiveP4);
+//        P5.distributeCardsSet(cardsToGiveP5);
+//
+//        System.out.println(P4.displaySet());
+//        System.out.println(P5.displaySet());
+//
+//
+//        String[] test1 = P4.return5Set();
+//        System.out.println(Arrays.toString(test1));
+//
+//        String[] test2 = P5.return5Set();
+//        System.out.println(Arrays.toString(test2));
+//
+//        System.out.println(P4.displaySet());
+//        System.out.println(P5.displaySet());
+
         //3 Player Phase
         String[] fullcard = Dealer.getDeckOfCards();
 
@@ -44,41 +81,54 @@ public class test1{
         System.out.println(P2.displayQueue());
         System.out.println(P3.displayQueue());
 
-        // 2 Player Phase
-        fullcard = Dealer.getDeckOfCards();
-
-        Player P4 = new Player("Adib");
-        Player P5 = new Player("Adam");
-
-        flc = new LinkedList<>(Arrays.asList(fullcard));
-        String[] cardsToGiveP4 = new String[26];
-        String[] cardsToGiveP5 = new String[26];
-
-
-        flc = Card.shuffleQueue(flc);
-
-        for (int i = 0; i < 26; i++) {
-            cardsToGiveP4[i] = flc.remove();
-        }
-
-        for (int i = 0; i < 26; i++) {
-            cardsToGiveP5[i] = flc.remove();
-        }
-
-        P4.distributeCardsSet(cardsToGiveP4);
-        P5.distributeCardsSet(cardsToGiveP5);
-
-        System.out.println(P4.displaySet());
-        System.out.println(P5.displaySet());
-
-        String[] test1 = P1.return5();
+        String[] test1 = P1.return5Queue();
         System.out.println(Arrays.toString(test1));
 
-        String[] test2 = P2.return5();
+        String[] test2 = P2.return5Queue();
         System.out.println(Arrays.toString(test2));
 
-        String[] test3 = P3.return5();
+        String[] test3 = P3.return5Queue();
         System.out.println(Arrays.toString(test3));
+
+        System.out.println(P1.displayQueue());
+        System.out.println(P2.displayQueue());
+        System.out.println(P3.displayQueue());
+
+//        // 2 Player Phase
+//        fullcard = Dealer.getDeckOfCards();
+//
+//        Player P4 = new Player("Adib");
+//        Player P5 = new Player("Adam");
+//
+//        flc = new LinkedList<>(Arrays.asList(fullcard));
+//        String[] cardsToGiveP4 = new String[26];
+//        String[] cardsToGiveP5 = new String[26];
+//
+//
+//        flc = Card.shuffleQueue(flc);
+//
+//        for (int i = 0; i < 26; i++) {
+//            cardsToGiveP4[i] = flc.remove();
+//        }
+//
+//        for (int i = 0; i < 26; i++) {
+//            cardsToGiveP5[i] = flc.remove();
+//        }
+//
+//        P4.distributeCardsSet(cardsToGiveP4);
+//        P5.distributeCardsSet(cardsToGiveP5);
+//
+//        System.out.println(P4.displaySet());
+//        System.out.println(P5.displaySet());
+//
+//        String[] test1 = P1.return5Queue();
+//        System.out.println(Arrays.toString(test1));
+//
+//        String[] test2 = P2.return5Queue();
+//        System.out.println(Arrays.toString(test2));
+//
+//        String[] test3 = P3.return5Queue();
+//        System.out.println(Arrays.toString(test3));
 
 //        String[] testje = {"sK","sX","d5","c4","s9"};
 //        int result = Card.getValueFromCard(testje);
