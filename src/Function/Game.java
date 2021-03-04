@@ -54,15 +54,11 @@ public class Game{
 
 
     // TESTING DISPLAY ONLY
-    public String displayQueue() {
-        return "Game{" +
-                "playerCardsQueue=" + playerCardsQueue +
-                '}';
+    public Queue<String> displayQueue() {
+        return playerCardsQueue;
     }
-    public String displaySet() {
-        return "Game{" +
-                "playerCardsSet=" + playerCardsSet +
-                '}';
+    public Set<String> displaySet() {
+        return playerCardsSet;
     }
 
     public Queue<String> getPlayerCardsQueue() {
