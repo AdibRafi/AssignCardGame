@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class GUI extends Application{
+public class ButtonClickMe extends Application{
     Button button;
 
 
