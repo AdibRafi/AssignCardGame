@@ -1,119 +1,62 @@
 package AdibWorkSpace;
 
-// import benda dlm package Function
-import Function.Card;
-import Function.Game;
-import Function.Player;
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
+import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
-import java.util.*;
+public class adibPlayGround extends Application{
+    public static void display(Queue<String> cards) throws FileNotFoundException {
+        Stage window = new Stage();
+        window.setTitle("Title of the Window");
 
+        ImageView[] imageView = new ImageView[cards.size()];
+        int loop = cards.size();
 
-public class adibPlayGround {
-    public static void main(String[] args) {
-        Player p1 = new Player("adib");
-        Player p2 = new Player("adam");
-        Player p3 = new Player("darwisy");
-
-        String[] cards1 = {"c5","s6","sK","dA","cK","h5","h3","dJ","d8","s7","cX","c2","h4","hA","d2","hJ","hX","s2"};
-        String[] cards2 = {"d4","h7","c4","cQ","sA","d5","s3","d3","h2","h8","c9","hK","d6","sJ","sX","s8","d7"};
-        String[] cards3 = {"cA","dX","h6","dQ","d9","c8","h9","hQ","sQ","cJ","dK","c6","s9","s4","c7","s5","c3"};
-        String[] fiveElement1 = {"c5","s6","sK","dA","cK"};
-        String[] fiveElement2 = {"d4","h7","c4","cQ","sA"};
-        String[] fiveElement3 = {"cA","dX","h6","dQ","d9"};
-
-        int index = 0;
-        int[] test = {12,3,4};
-        int min = test[0];
-
-        for (int i = 0; i < 3; i++) {
-            if (test[i] < min) {
-                min = test[i];
-                index=i;
-            }
+        for (int i = 0; i < loop; i++) {
+            String name = "/Users/adibrafi/IdeaProjects/Year_1_Tri_2/Assignment2OOPDS/src/deckOfCards/"+cards.remove()+".png";
+            InputStream stream = new FileInputStream(name);
+            Image image = new Image(stream);
+            imageView[i] = new ImageView();
+            imageView[i].setImage(image);
+            imageView[i].setX(10);
+            imageView[i].setY(10);
+            imageView[i].setFitWidth(50);
+            imageView[i].setPreserveRatio(true);
         }
-        System.out.println(min);
-        System.out.println(index);
 
-//        Set<String> x = new LinkedHashSet<>(Arrays.asList(fiveElement1));
-//        String[] nice = new String[5];
-//        for (int i = 0; i < 5; i++) {
-//            nice[i] = x.iterator().next();
-//            x.remove(x.iterator().next());
-//        }
-//        System.out.println(Arrays.toString(nice));
-//        System.out.println(x);
+        FlowPane flowPane = new FlowPane();
 
+        for (int i = 0; i < loop; i++) {
+            flowPane.getChildren().add(imageView[i]);
+        }
 
+//        flowPane.getChildren().add(imageView[0]);
+//        flowPane.getChildren().add(imageView[1]);
+//        flowPane.getChildren().add(imageView[2]);
 
-
-
-
-//        String[] testje = getDeckOfCards();
-//        Queue<String> l = new LinkedList<>(Arrays.asList(testje));
-//        String[] cardsToGiveForP1 = new String[18];
-//        String[] cardsToGiveForP2 = new String[17];
-//        String[] cardsToGiveForP3 = new String[17];
-//
-//        for (int i = 0; i < 18; i++) {
-//            cardsToGiveForP1[i] = l.remove();
-//        }
-//        for (int i = 0; i < 17; i++) {
-//            cardsToGiveForP2[i] = l.remove();
-//        }
-//        for (int i = 0; i < 17; i++) {
-//            cardsToGiveForP3[i] = l.remove();
-//        }
-//        p1.distributeCardsQueue(cardsToGiveForP1);
-//        p1.distributeCardsQueue(cardsToGiveForP2);
-//        p1.distributeCardsQueue(cardsToGiveForP3);
-
-//        p1.distributeCardsQueue(cards1);
-//        p1.shuffleQueue();
-//        System.out.println(p1.displayQueue());
-//        p1.removeCardsQueue();
-//        System.out.println(p1.displayQueue());
-//
-//        p2.distributeCardsSet(cards2);
-//        p2.shuffleSet();
-//        System.out.println(p2.displaySet());
-//        p2.removeCardsSet(fiveElement2);
-//        System.out.println(p2.displaySet());
-
-// ARCHIVE
-//        String[] test = {"c2","c3","d4","dA","sK","cA"};
-//        String[] deleteTest = {"c3","dA","sK"};
-//        Set<String> x = new HashSet<>(Arrays.asList(test));
-//        Set<String> y = new HashSet<>(Arrays.asList(deleteTest));
-//        Queue<String> a = new LinkedList<>(Arrays.asList(test));
-//        Queue<String> b = new LinkedList<>(Arrays.asList(deleteTest));
-//        System.out.println(x);
-//        x = Card.shuffleSet(x);
-//        System.out.println(x);
-
-
-
-//        System.out.println(a);
-//        a = Card.shuffleQueue(a);
-//        System.out.println(a);
-
+        Scene scene = new Scene(flowPane,300,250);
+        window.setScene(scene);
+        window.showAndWait();
     }
-    private static String[] getDeckOfCards() {
-        ArrayList<String> deckOfCards = new ArrayList<>();
 
-        String[] suits = {"d", "c", "h", "s"};
-        String[] ranks = {"K", "Q", "J", "X", "9", "8", "7", "6", "5", "4", "3", "2", "A"};
+    public static void main(String[] args) {
+        launch(args);
+    }
 
-        for (String suit : suits) {
-            for (String rank : ranks) {
-                deckOfCards.add(suit + rank);
-            }
-        }
-        String[] result = new String[deckOfCards.size()];
-        for (int i = 0; i < deckOfCards.size(); i++) {
-            result[i] = deckOfCards.get(i);
-        }
-        return result;
+    @Override
+    public void start(Stage stage) throws Exception {
+        String[] t = {"c2","c4","c5"};
+        Queue<String> e = new LinkedList<>(Arrays.asList(t));
+        display(e);
     }
 }
-
-
