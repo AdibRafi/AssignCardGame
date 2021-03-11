@@ -1,8 +1,6 @@
 package GUI;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,16 +9,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class stage1 extends Application {
-    Button Button;
-
-    @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Group 7 Card Game");
         primaryStage.show();
@@ -66,6 +60,17 @@ public class stage1 extends Application {
         hbBtn.getChildren().add(btn);
         grid.add(hbBtn, 1, 4);
 
+        String[] name = new String[3];
+        // Button Event
+        btn.setOnAction(e -> {
+            name[0] = userTextField.getText();
+            name[1] = userTextField2.getText();
+            name[2] = userTextField3.getText();
+            primaryStage.close();
+            testJap.start(name);
+        });
+
+
       /*  //Button Event
         btn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -80,6 +85,7 @@ public class stage1 extends Application {
 
 
     }
+
 
     public static void main(String[] args){
         launch(args);
