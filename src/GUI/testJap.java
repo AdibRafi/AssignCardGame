@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class testJap {
+public class testJap extends Application{
     public static void start(String[] name){
         Stage window = new Stage();
         window.setTitle("Title of the Window");
@@ -27,5 +27,15 @@ public class testJap {
         Scene scene = new Scene(layout,300,250);
         window.setScene(scene);
         window.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        String[] name = {"Adib", "Adam", "Darwisy"};
+        start(name);
     }
 }
