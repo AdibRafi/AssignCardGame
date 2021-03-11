@@ -1,5 +1,6 @@
 package GUI;
 
+import Function.Card;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,50 +19,150 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.*;
+import java.util.concurrent.Flow;
 
 public class stage2 extends Application {
-    public static void start(String[] name) {
-        Stage stage2 = new Stage();
-        stage2.setTitle("Round x");
+    public static void display(String[] name,String[] cards1,String[] cards2,String[] cards3) throws FileNotFoundException {
+        Stage stage = new Stage();
+        stage.setTitle("Round x");
 
         //GridPane
-        GridPane grid2 = new GridPane();
-        grid2.setAlignment(Pos.CENTER);
-        grid2.setHgap(10);
-        grid2.setVgap(10);
-        grid2.setPadding(new Insets(25, 25, 25, 25));
+        GridPane grid = new GridPane();
+        grid.setAlignment(Pos.CENTER);
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(25, 25, 25, 25));
 
-        StackPane layout = new StackPane();
+        // letak 'ROUND x'
+        StackPane stackPane = new StackPane();
+        stackPane.setPrefHeight(30);
+        Text roundText = new Text("Round 1");
 
-        Scene scene = new Scene(layout, 500, 300);
-        stage2.setScene(scene);
-        stage2.show();
+        stackPane.getChildren().add(roundText);
+        stackPane.setStyle("-fx-background-color: #87CEFA;");
 
-        //Controls
-        /*
-        part player-player aku tk fhm do
-         */
+        //Player
+        Text p1 = new Text(name[0]);
+        Text p2 = new Text(name[1]);
+        Text p3 = new Text(name[2]);
+
+        GridPane playerPane = new GridPane();
+        playerPane.setVgap(200);
+
+        playerPane.add(p1,0,0);
+        playerPane.add(p2,0,1);
+        playerPane.add(p3,0,2);
+        playerPane.setStyle("-fx-background-color: #9ab16f;");
 
 
+        //display Cards
 
+        ImageView[] imageViews = new ImageView[cards1.length];
+        for (int i = 0; i < cards1.length; i++) {
+            String nameFile = "/Users/adibrafi/IdeaProjects/Year_1_Tri_2/Assignment2OOPDS/src/deckOfCards/"+cards1[i]+".png";
+            InputStream stream = new FileInputStream(nameFile);
+            Image image = new Image(stream);
+            imageViews[i] = new ImageView();
+            imageViews[i].setImage(image);
+            imageViews[i].setX(10);
+            imageViews[i].setY(10);
+            imageViews[i].setFitWidth(60);
+            imageViews[i].setPreserveRatio(true);
+        }
+        FlowPane flowCard1 = new FlowPane();
+        for (int i = 0; i < cards1.length; i++) {
+            flowCard1.getChildren().add(imageViews[i]);
+        }
 
+        imageViews = new ImageView[cards2.length];
+        for (int i = 0; i < cards2.length; i++) {
+            String nameFile = "/Users/adibrafi/IdeaProjects/Year_1_Tri_2/Assignment2OOPDS/src/deckOfCards/"+cards2[i]+".png";
+            InputStream stream = new FileInputStream(nameFile);
+            Image image = new Image(stream);
+            imageViews[i] = new ImageView();
+            imageViews[i].setImage(image);
+            imageViews[i].setX(10);
+            imageViews[i].setY(10);
+            imageViews[i].setFitWidth(60);
+            imageViews[i].setPreserveRatio(true);
+        }
+        FlowPane flowCard2 = new FlowPane();
+        for (int i = 0; i < cards2.length; i++) {
+            flowCard2.getChildren().add(imageViews[i]);
+        }
+        imageViews = new ImageView[cards3.length];
+        for (int i = 0; i < cards3.length; i++) {
+            String nameFile = "/Users/adibrafi/IdeaProjects/Year_1_Tri_2/Assignment2OOPDS/src/deckOfCards/"+cards3[i]+".png";
+            InputStream stream = new FileInputStream(nameFile);
+            Image image = new Image(stream);
+            imageViews[i] = new ImageView();
+            imageViews[i].setImage(image);
+            imageViews[i].setX(10);
+            imageViews[i].setY(10);
+            imageViews[i].setFitWidth(60);
+            imageViews[i].setPreserveRatio(true);
+        }
+        FlowPane flowCard3 = new FlowPane();
+        for (int i = 0; i < cards3.length; i++) {
+            flowCard3.getChildren().add(imageViews[i]);
+        }
 
+        // letak flowpane dlm grid
+        VBox cardsBox = new VBox();
+        cardsBox.getChildren().addAll(flowCard1,flowCard2,flowCard3);
+        cardsBox.setFillWidth(true);
+        cardsBox.setStyle("-fx-background-color: #be57a3;");
 
         //Button
-        Button btn = new Button("Start");
-        HBox hbBtn = new HBox(10);
-        hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
-        hbBtn.getChildren().add(btn);
-        grid2.add(hbBtn, 1, 4);
+        HBox btnBox = new HBox(30);
+        btnBox.setAlignment(Pos.CENTER);
 
+        Button btn = new Button("Start");
+        btn.setMinHeight(35);
+        btn.setMinWidth(50);
         Button btn2 = new Button("Shuffle");
-        HBox hbBtn2 = new HBox(10);
-        hbBtn2.setAlignment(Pos.BOTTOM_LEFT);
-        hbBtn2.getChildren().add(btn2);
-        grid2.add(hbBtn2,0,2);
+        btn2.setMinHeight(35);
+        btn2.setMinWidth(50);
+
+        // Shuffling cards first before press Button
+        cards1 = Card.shuffleCards(cards1);
+        cards2 = Card.shuffleCards(cards2);
+        cards3 = Card.shuffleCards(cards3);
+
+        String[] finalCards1 = cards1;
+        String[] finalCards2 = cards2;
+        String[] finalCards3 = cards3;
+        btn2.setOnAction(e->{
+            stage.close();
+            try {
+                display(name, finalCards1, finalCards2, finalCards3);
+            } catch (FileNotFoundException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
+            }
+        });
+
+        btnBox.getChildren().addAll(btn,btn2);
+
+        StackPane btnPane = new StackPane();
+        btnPane.setPrefHeight(50);
+        btnPane.getChildren().add(btnBox);
+        btnPane.setStyle("-fx-background-color: #b81e5e;");
+
+
+        // Final design
+        BorderPane borderPane = new BorderPane();
+        borderPane.setTop(stackPane);
+        borderPane.setBottom(btnPane);
+        borderPane.setLeft(playerPane);
+        borderPane.setCenter(cardsBox);
+
+        Scene scene = new Scene(borderPane, 1000, 650);
+        stage.setScene(scene);
+        stage.show();
 
 
     }
@@ -72,7 +173,15 @@ public class stage2 extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        String[] name = {"Adib", "Adam", "Darwisy"};
+        String[] cards = {"c5","s6","sK","dA","cK","h5","h3","dJ","d8","s7","cX","c2","h4","hA","d2","hJ","hX","s2"};
+        String[] cards2 = {"d4","h7","c4","cQ","sA","d5","s3","d3","h2","h8","c9","hK","d6","sJ","sX","s8","d7"};
+        String[] cards3 = {"cA","dX","h6","dQ","d9","c8","h9","hQ","sQ","cJ","dK","c6","s9","s4","c7","s5","c3"};
+        display(name,cards,cards2,cards3);
+    }
+    private void displayCards(Queue<String> cards){
 
+        ImageView[] imageViews = new ImageView[3];
     }
 }
 
