@@ -31,7 +31,7 @@ public class stage2 extends Application {
         launch(args);
     }
 
-    public static void display(String[] name,String[] cards1,String[] cards2,String[] cards3) throws FileNotFoundException {
+    public static void display3Player(String[] name,String[] cards1,String[] cards2,String[] cards3) throws FileNotFoundException {
         Stage stage = new Stage();
         stage.setTitle("Round x");
 
@@ -73,6 +73,8 @@ public class stage2 extends Application {
 
         // letak flowpane dlm grid
         VBox cardsBox = new VBox();
+        if (cards1.length<=16)
+            cardsBox.setSpacing(120);
         cardsBox.getChildren().addAll(flowCard1,flowCard2,flowCard3);
         cardsBox.setFillWidth(true);
         cardsBox.setStyle("-fx-background-color: #be57a3;");
@@ -97,9 +99,9 @@ public class stage2 extends Application {
         String[] finalCards2 = cards2;
         String[] finalCards3 = cards3;
         btn2.setOnAction(e->{
-            stage.close();
             try {
-                display(name, finalCards1, finalCards2, finalCards3);
+                display3Player(name, finalCards1, finalCards2, finalCards3);
+                stage.close();
             } catch (FileNotFoundException fileNotFoundException) {
                 fileNotFoundException.printStackTrace();
             }
@@ -126,14 +128,16 @@ public class stage2 extends Application {
         stage.setScene(scene);
         stage.showAndWait();
     }
-
     @Override
     public void start(Stage stage) throws Exception {
         String[] name = {"Adib", "Adam", "Darwisy"};
-        String[] cards = {"c5","s6","sK","dA","cK","h5","h3","dJ","d8","s7","cX","c2","h4","hA","d2","hJ","hX","s2"};
-        String[] cards2 = {"d4","h7","c4","cQ","sA","d5","s3","d3","h2","h8","c9","hK","d6","sJ","sX","s8","d7"};
-        String[] cards3 = {"cA","dX","h6","dQ","d9","c8","h9","hQ","sQ","cJ","dK","c6","s9","s4","c7","s5","c3"};
-        display(name,cards,cards2,cards3);
+        String[] cards = {"c5","s6","sK","dA","cK","h5","h3","dJ","d8","s7","cX","c2","h4"};
+//                ,"hA","d2","hJ","hX","s2"};
+        String[] cards2 = {"d4","h7","c4","cQ","sA","d5","s3","d3","h2","h8","c9","hK"};
+//                ,"d6","sJ","sX","s8","d7"};
+        String[] cards3 = {"cA","dX","h6","dQ","d9","c8","h9","hQ","sQ","cJ","dK","c6"};
+//                "s9","s4","c7","s5","c3"};
+        display3Player(name,cards,cards2,cards3);
     }
     private static FlowPane imageToFlow(String[] cards) throws FileNotFoundException {
         ImageView[] imageViews = new ImageView[cards.length];
