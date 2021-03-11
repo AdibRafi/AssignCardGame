@@ -26,6 +26,11 @@ import java.util.*;
 import java.util.concurrent.Flow;
 
 public class stage2 extends Application {
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     public static void display(String[] name,String[] cards1,String[] cards2,String[] cards3) throws FileNotFoundException {
         Stage stage = new Stage();
         stage.setTitle("Round x");
@@ -60,56 +65,11 @@ public class stage2 extends Application {
 
 
         //display Cards
+        FlowPane flowCard1 = imageToFlow(cards1);
+        FlowPane flowCard2 = imageToFlow(cards2);
+        FlowPane flowCard3 = imageToFlow(cards3);
 
-        ImageView[] imageViews = new ImageView[cards1.length];
-        for (int i = 0; i < cards1.length; i++) {
-            String nameFile = "/Users/adibrafi/IdeaProjects/Year_1_Tri_2/Assignment2OOPDS/src/deckOfCards/"+cards1[i]+".png";
-            InputStream stream = new FileInputStream(nameFile);
-            Image image = new Image(stream);
-            imageViews[i] = new ImageView();
-            imageViews[i].setImage(image);
-            imageViews[i].setX(10);
-            imageViews[i].setY(10);
-            imageViews[i].setFitWidth(60);
-            imageViews[i].setPreserveRatio(true);
-        }
-        FlowPane flowCard1 = new FlowPane();
-        for (int i = 0; i < cards1.length; i++) {
-            flowCard1.getChildren().add(imageViews[i]);
-        }
 
-        imageViews = new ImageView[cards2.length];
-        for (int i = 0; i < cards2.length; i++) {
-            String nameFile = "/Users/adibrafi/IdeaProjects/Year_1_Tri_2/Assignment2OOPDS/src/deckOfCards/"+cards2[i]+".png";
-            InputStream stream = new FileInputStream(nameFile);
-            Image image = new Image(stream);
-            imageViews[i] = new ImageView();
-            imageViews[i].setImage(image);
-            imageViews[i].setX(10);
-            imageViews[i].setY(10);
-            imageViews[i].setFitWidth(60);
-            imageViews[i].setPreserveRatio(true);
-        }
-        FlowPane flowCard2 = new FlowPane();
-        for (int i = 0; i < cards2.length; i++) {
-            flowCard2.getChildren().add(imageViews[i]);
-        }
-        imageViews = new ImageView[cards3.length];
-        for (int i = 0; i < cards3.length; i++) {
-            String nameFile = "/Users/adibrafi/IdeaProjects/Year_1_Tri_2/Assignment2OOPDS/src/deckOfCards/"+cards3[i]+".png";
-            InputStream stream = new FileInputStream(nameFile);
-            Image image = new Image(stream);
-            imageViews[i] = new ImageView();
-            imageViews[i].setImage(image);
-            imageViews[i].setX(10);
-            imageViews[i].setY(10);
-            imageViews[i].setFitWidth(60);
-            imageViews[i].setPreserveRatio(true);
-        }
-        FlowPane flowCard3 = new FlowPane();
-        for (int i = 0; i < cards3.length; i++) {
-            flowCard3.getChildren().add(imageViews[i]);
-        }
 
         // letak flowpane dlm grid
         VBox cardsBox = new VBox();
@@ -144,6 +104,8 @@ public class stage2 extends Application {
                 fileNotFoundException.printStackTrace();
             }
         });
+        //start btn
+        btn.setOnAction(e->stage.close());
 
         btnBox.getChildren().addAll(btn,btn2);
 
@@ -162,13 +124,7 @@ public class stage2 extends Application {
 
         Scene scene = new Scene(borderPane, 1000, 650);
         stage.setScene(scene);
-        stage.show();
-
-
-    }
-
-    public static void main(String[] args) {
-        launch(args);
+        stage.showAndWait();
     }
 
     @Override
@@ -179,9 +135,24 @@ public class stage2 extends Application {
         String[] cards3 = {"cA","dX","h6","dQ","d9","c8","h9","hQ","sQ","cJ","dK","c6","s9","s4","c7","s5","c3"};
         display(name,cards,cards2,cards3);
     }
-    private void displayCards(Queue<String> cards){
-
-        ImageView[] imageViews = new ImageView[3];
+    private static FlowPane imageToFlow(String[] cards) throws FileNotFoundException {
+        ImageView[] imageViews = new ImageView[cards.length];
+        for (int i = 0; i < cards.length; i++) {
+            String nameFile = "/Users/adibrafi/IdeaProjects/Year_1_Tri_2/Assignment2OOPDS/src/deckOfCards/"+cards[i]+".png";
+            InputStream stream = new FileInputStream(nameFile);
+            Image image = new Image(stream);
+            imageViews[i] = new ImageView();
+            imageViews[i].setImage(image);
+            imageViews[i].setX(10);
+            imageViews[i].setY(10);
+            imageViews[i].setFitWidth(60);
+            imageViews[i].setPreserveRatio(true);
+        }
+        FlowPane flowResult = new FlowPane();
+        for (int i = 0; i < cards.length; i++) {
+            flowResult.getChildren().add(imageViews[i]);
+        }
+        return flowResult;
     }
 }
 
