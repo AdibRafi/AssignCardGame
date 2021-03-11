@@ -25,6 +25,16 @@ public class Card {
         Collections.shuffle(arrays);
         return new LinkedHashSet<>(arrays);
     }
+    public static String[] shuffleCards(String[] cards){
+        ArrayList<String> arrays = new ArrayList<>(Arrays.asList(cards));
+        Collections.shuffle(arrays);
+        String[] result = new String[arrays.size()];
+        for (int i = 0; i < arrays.size(); i++) {
+            result[i] = arrays.get(i);
+        }
+        return result;
+    }
+
 
     public static int getValueFromCard(String[] fiveElementArray){
         ArrayList<String> result = new ArrayList<>();
@@ -99,4 +109,5 @@ public class Card {
         }
         return result;
     }
+
 }
