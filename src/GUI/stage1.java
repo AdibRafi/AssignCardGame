@@ -15,9 +15,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class stage1 extends Application {
-    public void start(Stage primaryStage) {
+    public static String[] display(){
+        Stage primaryStage = new Stage();
         primaryStage.setTitle("Group 7 Card Game");
-        primaryStage.show();
+
 
         //GridPane
         GridPane grid = new GridPane();
@@ -67,8 +68,13 @@ public class stage1 extends Application {
             name[1] = userTextField2.getText();
             name[2] = userTextField3.getText();
             primaryStage.close();
-            testJap.start(name);
         });
+
+        primaryStage.showAndWait();
+        return name;
+    }
+    public void start(Stage primaryStage) {
+        display();
 
 
       /*  //Button Event
