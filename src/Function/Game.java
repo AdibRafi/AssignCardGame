@@ -64,4 +64,14 @@ public class Game{
     public Queue<String> getPlayerCardsQueue() {
         return playerCardsQueue;
     }
+
+    public String[] changeQueueToArray(Queue<String> cards){
+        String[] result = new String[cards.size()];
+        int loop = cards.size();
+        for (int i = 0; i < loop; i++) {
+            result[i] = cards.remove();
+        }
+        this.playerCardsQueue.addAll(Arrays.asList(result));
+        return result;
+    }
 }
