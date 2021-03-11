@@ -31,7 +31,7 @@ public class ButtonClickMe extends Application{
 
     }
 
-    public static void main(String[] args){
+    public static void test(String[] args){
         launch(args);
     }
 }
