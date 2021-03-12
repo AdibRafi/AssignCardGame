@@ -142,7 +142,8 @@ public class stage2 extends Application {
     private static FlowPane imageToFlow(String[] cards) throws FileNotFoundException {
         ImageView[] imageViews = new ImageView[cards.length];
         for (int i = 0; i < cards.length; i++) {
-            String nameFile = "/Users/adibrafi/IdeaProjects/Year_1_Tri_2/Assignment2OOPDS/src/deckOfCards/"+cards[i]+".png";
+            String nameFile = "C:\\Users\\User\\IdeaProjects\\Assignment2OOPDS\\src\\deckOfCards\\"+cards[i]+".png";
+
             InputStream stream = new FileInputStream(nameFile);
             Image image = new Image(stream);
             imageViews[i] = new ImageView();

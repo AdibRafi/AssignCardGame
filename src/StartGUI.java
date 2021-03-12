@@ -51,7 +51,7 @@ public class StartGUI extends Application {
         p2.distributeCardsQueue(cardsToGiveP2);
         p3.distributeCardsQueue(cardsToGiveP3);
 
-        stage2.display(name,p1.changeQueueToArray(p1.getPlayerCardsQueue())
+        stage2.display3Player(name,p1.changeQueueToArray(p1.getPlayerCardsQueue())
                 ,p2.changeQueueToArray(p2.getPlayerCardsQueue())
                 ,p3.changeQueueToArray(p3.getPlayerCardsQueue()));
     }
