@@ -1,5 +1,6 @@
 import Function.Card;
 import Function.Player;
+import GUI.stage1;
 
 import java.lang.reflect.Array;
 import java.util.*;
@@ -220,8 +221,8 @@ public class Start {
             } while (!userInput.equals(""));
 
             // STEP 3 SHOW 5 ELEMENT
-            int x,y,z,max;
-            String displayX,displayY,displayZ;
+            int x,y,max;
+            String displayX,displayY;
             String[] fiveElementP4 = p4.return5Set();
             String[] fiveElementP5 = p5.return5Set();
 

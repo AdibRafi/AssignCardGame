@@ -65,6 +65,10 @@ public class Game{
         return playerCardsQueue;
     }
 
+    public Set<String> getPlayerCardsSet() {
+        return playerCardsSet;
+    }
+
     public String[] changeQueueToArray(Queue<String> cards){
         String[] result = new String[cards.size()];
         int loop = cards.size();
@@ -72,6 +76,16 @@ public class Game{
             result[i] = cards.remove();
         }
         this.playerCardsQueue.addAll(Arrays.asList(result));
+        return result;
+    }
+    public String[] changeSetToArray(Set<String> cards){
+        String[] result = new String[cards.size()];
+        int loop = cards.size();
+        for (int i = 0; i < loop; i++) {
+            result[i] = cards.iterator().next();
+            cards.remove(cards.iterator().next());
+        }
+        this.playerCardsSet.addAll(Arrays.asList(result));
         return result;
     }
 }

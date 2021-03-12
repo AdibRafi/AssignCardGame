@@ -24,13 +24,14 @@ public class stage3 extends Application {
         launch(args);
     }
 
-    public void display(String[] name,String[] cards1,String[] cards2,String[] cards3, int round) throws FileNotFoundException {
+    public static int[] display3Player(String[] name,String[] cards1,String[] cards2,String[] cards3, int round) throws FileNotFoundException {
         Stage stage = new Stage();
-        stage.setTitle("Round x");
+        stage.setTitle("Group 7 Card Game");
 
         StackPane stackPane = new StackPane();
         stackPane.setPrefHeight(30);
-        Text roundText = new Text("Round 1");
+        Text roundText = new Text("Round " + round);
+        roundText.setFont(Font.font("Helvetica", FontWeight.NORMAL, 30));
 
         stackPane.getChildren().add(roundText);
         stackPane.setStyle("-fx-background-color: #87CEFA;");
@@ -73,8 +74,48 @@ public class stage3 extends Application {
         btn.setMinWidth(50);
         btn.setOnAction(e->stage.close());
 
-        Text winRound = new Text("Adib win");
-        winRound.setTextAlignment(Pos.BOTTOM_RIGHT);
+        //Identify winner
+        String winner = "";
+        int x = Card.getValueFromCard(cards1);
+        int y = Card.getValueFromCard(cards2);
+        int z = Card.getValueFromCard(cards3);
+        int max = Math.max(x,Math.max(y,z));
+        int t = 0;
+        int[] result = new int[3];
+
+        if (x == max){
+            winner += name[0];
+            t++;
+            result[0] = max;
+        }
+        else{
+            result[0] = 0;
+        }
+
+        if (y == max){
+            if (t >= 1){
+                winner += "and";
+            }
+            winner += name[1];
+            result[1] = max;
+        }
+        else{
+            result[1] = 0;
+        }
+        if (z == max){
+            if (t>=1){
+                winner += "and";
+            }
+            winner += name[2];
+            result[2] = max;
+        }
+        else
+            result[2] = 0;
+
+        winner += " Win!";
+
+        Text winRound = new Text(winner);
+        winRound.setFont(Font.font("Helvetica", FontWeight.NORMAL, 15));
 
         btnBox.getChildren().addAll(btn,winRound);
 
@@ -87,7 +128,7 @@ public class stage3 extends Application {
         //Points
         VBox points = new VBox();
         Card.getValueFromCard(cards1);
-        int x = Card.getValueFromCard(cards1);
+        x = Card.getValueFromCard(cards1);
         Text point1 = new Text(Integer.toString(x));
         point1.setFont(Font.font("Tahoma", FontWeight.NORMAL, 50));
         points.getChildren().add(point1);
@@ -111,18 +152,19 @@ public class stage3 extends Application {
         borderPane.setCenter(cardsBox);
         borderPane.setRight(points);
 
-        Scene scene = new Scene(borderPane, 1000, 650);
+        Scene scene = new Scene(borderPane, 700, 600);
         stage.setScene(scene);
         stage.showAndWait();
-
+        return result;
     }
-    public void display2Player(String[] name,String[] cards1,String[] cards2) throws FileNotFoundException {
+    public static int[] display2Player(String[] name,String[] cards1,String[] cards2,int round) throws FileNotFoundException {
         Stage stage = new Stage();
         stage.setTitle("Group 7 Card Game");
 
         StackPane stackPane = new StackPane();
         stackPane.setPrefHeight(30);
-        Text roundText = new Text("Round 1");
+        Text roundText = new Text("Round " + round);
+        roundText.setFont(Font.font("Helvetica", FontWeight.NORMAL, 30));
 
         stackPane.getChildren().add(roundText);
         stackPane.setStyle("-fx-background-color: #87CEFA;");
@@ -161,9 +203,25 @@ public class stage3 extends Application {
         btn.setMinWidth(50);
         btn.setOnAction(e->stage.close());
 
-        Text winRounds = new Text("adib win");
-        winRounds.setTextAlignment(Pos.BOTTOM_RIGHT);
-
+        //Identify winner text
+        String winner;
+        int[] result = new int[2];
+        int max = Math.max(Card.getValueFromCard(cards1),Card.getValueFromCard(cards2));
+        if (Card.getValueFromCard(cards1) > Card.getValueFromCard(cards2)){
+            winner = name[0] + " Win!";
+            result[0] = max;
+        }
+        else if (Card.getValueFromCard(cards1) == Card.getValueFromCard(cards2)){
+            winner = "Its a tie!";
+            result[0] = max;
+            result[1] = max;
+        }
+        else{
+            winner = name[1] + " Win!";
+            result[1] = max;
+        }
+        Text winRounds = new Text(winner);
+        winRounds.setFont(Font.font("Helvetica", FontWeight.NORMAL, 15));
         btnBox.getChildren().addAll(btn,winRounds);
 
         StackPane btnPane = new StackPane();
@@ -194,17 +252,16 @@ public class stage3 extends Application {
         borderPane.setCenter(cardsBox);
         borderPane.setRight(points);
 
-        Scene scene = new Scene(borderPane, 1000, 650);
+        Scene scene = new Scene(borderPane, 600, 400);
         stage.setScene(scene);
         stage.showAndWait();
-
-
+        return result;
     }
 
     private static FlowPane imageToFlow(String[] cards) throws FileNotFoundException {
         ImageView[] imageViews = new ImageView[cards.length];
         for (int i = 0; i < cards.length; i++) {
-            String nameFile = "C:\\Users\\User\\IdeaProjects\\Assignment2OOPDS\\src\\deckOfCards\\"+cards[i]+".png";
+            String nameFile = "/Users/adibrafi/IdeaProjects/Year_1_Tri_2/Assignment2OOPDS/src/deckOfCards/"+cards[i]+".png";
 
             InputStream stream = new FileInputStream(nameFile);
             Image image = new Image(stream);
@@ -225,16 +282,19 @@ public class stage3 extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         String[] name = {"Adib", "Adam", "Darwisy"};
-        String[] cards = {"c5","s6","sK","dA","cK","h5","h3","dJ","d8","s7","cX","c2","h4"};
+        String[] cards = {"c5","s6","sK","dA","cK"};
+//        ,"h5","h3","dJ","d8","s7","cX","c2","h4"};
 //                ,"hA","d2","hJ","hX","s2"};
-        String[] cards2 = {"d4","h7","c4","cQ","sA","d5","s3","d3","h2","h8","c9","hK"};
+        String[] cards2 = {"d4","h7","c4","cQ","sA"};
+//        ,"d5","s3","d3","h2","h8","c9","hK"};
 //                ,"d6","sJ","sX","s8","d7"};
-        String[] cards3 = {"cA","dX","h6","dQ","d9","c8","h9","hQ","sQ","cJ","dK","c6"};
+        String[] cards3 = {"cA","dX","h6","dQ","d9"};
+//        ,"c8","h9","hQ","sQ","cJ","dK","c6"};
 //                "s9","s4","c7","s5","c3"};
 
-//        display(name,cards,cards2,cards3);
+        display3Player(name,cards,cards2,cards3,1);
 
-        display2Player(name,cards,cards2);
+//        display2Player(name,cards,cards2,1);
 
     }
 }
