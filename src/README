@@ -1,0 +1,11 @@
+Before Running StartGUI:
+Go to stage2.java, line 243.
+and
+stage3.java, line 264.
+Change the absolute path for the cards
+
+To Start An Application with GUI
+Run StartGUI
+
+To Start An Application without GUI
+Run Start

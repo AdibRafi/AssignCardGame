@@ -94,7 +94,7 @@ public class stage3 extends Application {
 
         if (y == max){
             if (t >= 1){
-                winner += "and";
+                winner += " and ";
             }
             winner += name[1];
             result[1] = max;
@@ -104,7 +104,7 @@ public class stage3 extends Application {
         }
         if (z == max){
             if (t>=1){
-                winner += "and";
+                winner += " and ";
             }
             winner += name[2];
             result[2] = max;

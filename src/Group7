@@ -1,0 +1,25 @@
+1191100799, Ahmad Adib Bin Ahmad Rafi
+1191101000, Adam Shaharudin
+1191100792, Raja Muhammad Darwisy Bin Raja Ahmad Al'Konee
+
+Task Distribution:
+1) Adib:
+    - Determine the highest point of the cards
+    - Identify the winner for each round
+    - Track the score of the player
+    - Making GUI for displaying all the cards (Stage 2)
+    - Implement/ overall flow of the game
+
+2) Adam:
+    - Made the deck of cards
+    - Deal the cards and evenly distribute to each player
+    - Shuffle cards
+    - Sorting the cards
+    - Creating a class for Player
+
+3) Darwisy:
+    - Making GUI for inserting player name (Stage 1)
+    - Making GUI for display the winner of the round (Stage 3)
+    - Making GUI for display the overall Score (Stage 4)
+    - Making GUI for display who would proceed 2 player phase (Stage5)
+    - Making GUI for display who would be the winner of the game (Stage 5)
